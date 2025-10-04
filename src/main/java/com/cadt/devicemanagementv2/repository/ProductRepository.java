@@ -1,4 +1,13 @@
 package com.cadt.devicemanagementv2.repository;
 
-public interface ProductRepository {
+import com.cadt.devicemanagementv2.model.Product;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+
+import java.util.Optional;
+
+public interface ProductRepository extends JpaRepository<Product, Long>, JpaSpecificationExecutor<Product> {
+    Optional<Product> findBySku(String sku);
+
+    boolean existsBySku(String sku);
 }
